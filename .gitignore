@@ -1,0 +1,6 @@
+.DS_Store
+**/node_modules/
+*.log
+.codex/pstack-models.json
+.audit/
+decisions.tsv

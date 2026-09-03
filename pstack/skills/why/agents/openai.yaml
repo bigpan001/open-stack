@@ -1,0 +1,6 @@
+interface:
+  display_name: "Why"
+  short_description: "Run the Why pstack workflow in Codex."
+  default_prompt: "Use $why for this request."
+policy:
+  allow_implicit_invocation: false
