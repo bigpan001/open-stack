@@ -9,6 +9,7 @@ Upstream: <https://github.com/cursor/plugins/tree/main/pstack>
 | 3. Runtime port | Normalize skill frontmatter, convert named agents to skills, map delegation/models/monitoring to Codex | Every `SKILL.md` passes validation; no active skill depends on Cursor-only runtime fields | Complete |
 | 4. Regression checks | Run shipped script tests and port-specific static checks | 52 upstream tests, TypeScript, entrypoint, schema, and compatibility checks pass | Complete |
 | 5. Personal install | Publish the validated package to the personal marketplace and install it | `codex plugin list` reports `pstack@personal` enabled and the installed cache contains 47 skills | Complete |
+| 6. Universal cross-agent distribution | Decouple core skills from platform runtimes; build adapters for Pi, OpenCode, Cursor, Codex, Kimi, ZCode | `verify_universal_distribution.py` passes 47 skills and 6 adapters | Complete |
 
 The dormant Benny automation pack remains as upstream reference material. It is not registered as a Codex automation because its webhook and runtime contracts are Cursor-specific.
 

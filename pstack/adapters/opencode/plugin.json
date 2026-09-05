@@ -1,0 +1,10 @@
+{
+  "id": "pstack-universal",
+  "name": "pstack",
+  "version": "0.14.7",
+  "description": "OpenCode adapter for pstack universal skills",
+  "entry": "./skills",
+  "commands": {
+    "poteto": "skills/poteto-mode/SKILL.md"
+  }
+}

@@ -4,3 +4,4 @@
 .codex/pstack-models.json
 .audit/
 decisions.tsv
+/plugins/pstack/

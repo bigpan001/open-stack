@@ -1,0 +1,7 @@
+{
+  "id": "com.pstack.universal",
+  "name": "pstack-zcode",
+  "version": "0.14.7",
+  "description": "ZCode IDE plugin and adapter for pstack skills",
+  "skills": "./skills"
+}

@@ -1,0 +1,7 @@
+{
+  "name": "pstack-universal",
+  "version": "0.14.7",
+  "description": "Pi adapter for pstack universal skill distribution",
+  "skillRoot": "./skills",
+  "fallback": "sequential-phase-gate"
+}

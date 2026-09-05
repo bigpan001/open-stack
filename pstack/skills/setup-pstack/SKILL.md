@@ -1,11 +1,11 @@
 ---
 name: setup-pstack
-description: Configure the Codex models and reasoning efforts pstack uses per role. Detects models exposed by the current Codex host and writes a project-local or personal JSON override. Use for $setup-pstack, "configure pstack models", or changing pstack's model choices.
+description: Configure the runtime models, platform adapters, and reasoning efforts pstack uses per role across Codex, Cursor, Pi, OpenCode, Kimi, and ZCode. Use for $setup-pstack, "configure pstack models", or setting platform adapters.
 ---
 
-# Setup pstack for Codex
+# Setup pstack for Universal Agent Runtimes
 
-Read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before changing model configuration.
+Read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) and platform adapters under `adapters/<platform>/` before changing model or adapter configuration.
 
 Configure only models that the current Codex host exposes. A missing configuration is valid; all pstack workflows can inherit the parent model.
 

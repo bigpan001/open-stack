@@ -3,7 +3,7 @@ name: poteto-mode
 description: poteto's engineering style for concise responses, deliberate Codex sub-agents, simple code, and verified work. Use for poteto, $poteto-mode, or requests to work in this style.
 ---
 
-> Codex port: read the [Codex runtime adapter](references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](references/universal-runtime-adapter.md) or your platform adapter under `adapters/<platform>/` before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # Poteto mode
 

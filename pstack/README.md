@@ -1,6 +1,18 @@
 # pstack
 
-> This directory is a Codex-compatible port of the upstream Cursor plugin. Codex loads `.codex-plugin/plugin.json`; the original `.cursor-plugin/plugin.json` remains for provenance. See the [runtime adapter](./skills/poteto-mode/references/codex-adapter.md) for tool and model mappings.
+> This project is a cross-agent universal distribution of pstack supporting **Codex, Cursor, Pi, OpenCode, Kimi, and ZCode**.
+> Core skills reside in `skills/` as portable Markdown specs, with platform-specific adapters in `adapters/<platform>/` and a unified cross-agent matrix in [universal runtime adapter](./skills/poteto-mode/references/universal-runtime-adapter.md).
+
+## Supported Agent Runtimes
+
+| Platform | Core Skills | Manifest / Discovery | Sub-Agent Primitive | Automation / Loop | Primary Install Path |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Codex** | `skills/*/SKILL.md` | `.codex-plugin/plugin.json` | Built-in `spawn_agent` / forks | `automation_update` | `python scripts/install.py codex` |
+| **Cursor** | `skills/*/SKILL.md` | `.cursor-plugin/plugin.json` | Background task runner | Composer loop & rules | `python scripts/install.py cursor` |
+| **Pi** | `skills/*/SKILL.md` | `adapters/pi/pi.json` | Process worker / sequential gate | Shell cron / watcher | `python scripts/install.py pi` |
+| **OpenCode** | `skills/*/SKILL.md` | `adapters/opencode/plugin.json`| Subtask tool / CLI worker | Event triggers & hooks | `python scripts/install.py opencode` |
+| **Kimi** | `skills/*/SKILL.md` | Agent prompt pack | Sequential phase execution | Scheduled runner | `python scripts/install.py kimi` |
+| **ZCode** | `skills/*/SKILL.md` | `adapters/zcode/zcode-plugin.json`| Background IDE runner | IDE background tasks | `python scripts/install.py zcode` |
 
 i'm [poteto](https://x.com/poteto). i'm not a president or ceo, but i've worked with millions of lines of code at Meta, Netflix, and Cursor. i'm also on the react core team where i help build and maintain react compiler.
 
