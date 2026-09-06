@@ -9,11 +9,11 @@
 ## Installation
 
 ```bash
-# Register pstack skills with Pi agent
-pi skills add ./skills
-# Or copy to ~/.pi/skills
-mkdir -p ~/.pi/skills
-cp -r skills/* ~/.pi/skills/
+# User global install (Pi loads from ~/.pi/agent/skills or ~/.agents/skills)
+python3 scripts/install.py pi
+
+# Project local install (loads from .agents/skills)
+python3 scripts/install.py pi --project
 ```
 
 ## Delegation & Fallback

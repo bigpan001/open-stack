@@ -3,7 +3,7 @@ name: how
 description: "Use for \"how does X work\", code walkthroughs before changing something, and placement / ownership / layering questions (\"where should this live\", \"which package owns this\", \"is this the right layer\"). Explains subsystem architecture, runtime flow, onboarding mental models. Can critique architecture. Use why for motivation."
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # How
 
@@ -63,7 +63,7 @@ Then proceed to Step 3.
 
 ### Step 2b. Direct Explain (simple questions)
 
-Spawn a single Codex sub-agent that explores and explains in one pass:
+Spawn a single sub-agent that explores and explains in one pass:
 
 - `task_name`: a short unique identifier
 - `model`: the configured `how-explainer` route when available; otherwise inherit the parent
@@ -75,7 +75,7 @@ Proceed to Step 4.
 
 ### Step 3. Synthesize (complex questions only)
 
-Once all explorers return, spawn a single Codex sub-agent to synthesize their findings into one coherent explanation:
+Once all explorers return, spawn a single sub-agent to synthesize their findings into one coherent explanation:
 
 - `task_name`: a short unique identifier
 - `model`: the configured `how-explainer` route when available; otherwise inherit the parent

@@ -3,7 +3,7 @@ name: maintain-verification-skill
 description: "Periodic pass that keeps a project's verification skill and feature map honest: parallel source readers per feature, one live session driving every feature, at most one PR of proven corrections. Use for /maintain-verification-skill or \"audit the verify skill\"."
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # Maintain a verification skill
 
@@ -23,7 +23,7 @@ Only edit the verification skill's own directory (its SKILL.md, features/, and a
 
 ## Pass
 
-0. **Locate the target.** Find the verification skill to maintain: the project-local skill whose body has launch/drive sections and a feature map (usually `.codex/skills/verify-*/`). Several candidates → ask which one; none → stop and point at `$create-verification-skill` instead of inventing a target.
+0. **Locate the target.** Find the verification skill to maintain: the project-local skill whose body has launch/drive sections and a feature map (usually `.agents/skills/verify-*/` (or `~/.agents/skills/verify-*/`)). Several candidates → ask which one; none → stop and point at `$create-verification-skill` instead of inventing a target.
 
 1. **Index hygiene.** Read the feature map README and glob its sibling files. Fix missing, extra, duplicate, or dead entries. Lightweight; no generated inventory.
 
