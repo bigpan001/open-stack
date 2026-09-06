@@ -14,7 +14,7 @@ Maintain a concise checklist in commentary when the workflow asks for a todo lis
 
 Use Codex collaboration tools for subtasks in the current request:
 
-- `spawn_agent` starts a bounded subtask and returns immediately.
+- `spawn_agent` starts a bounded subtask and returns immediately. Accepts `model` overrides (including local and custom router prefixes like `lo/*`, e.g. `lo/gemini-3.8-flash-high`, `lo/claude-opus-4.6`) when supported or exposed by the host.
 - `wait_agent` waits for mailbox updates. Prefer a long bounded wait over frequent polling.
 - `send_message` adds context without restarting an agent.
 - `followup_task` starts another turn only after an agent is idle.
@@ -31,7 +31,7 @@ Load the first existing configuration in this order:
 1. `<workspace>/.codex/pstack-models.json`
 2. `~/.codex/pstack-models.json`
 
-The value for a role is either `{ "model": "...", "reasoning_effort": "..." }`, a list of those objects for panels, or `{ "inherit_parent": true }`. Pass a model override only when the current host exposes that exact model and effort. Otherwise omit the override and inherit the parent model.
+The value for a role is either `{ "model": "...", "reasoning_effort": "..." }`, a list of those objects for panels, or `{ "inherit_parent": true }`. Pass a model override whenever configured—including routed aliases with `lo/*` prefixes (e.g. `lo/gemini-3.8-flash-high`, `lo/claude-opus-4.6`) or native models exposed by the host. Only omit the override and inherit the parent model when the role is explicitly marked `{ "inherit_parent": true }` or completely unconfigured.
 
 Portable defaults, subject to current host availability:
 
@@ -39,6 +39,8 @@ Portable defaults, subject to current host availability:
 - Balanced implementation and review: `gpt-5.6-terra`, reasoning `high`.
 - Fast mechanical work: `gpt-5.6-luna`, reasoning `medium` or `high`.
 - Economical review lanes: `gpt-5.4-mini`, reasoning `high`.
+- Router-assisted high-speed execution: `lo/gemini-3.8-flash-high`, `lo/gemini-3.7-flash-high`.
+- Router-assisted deep reasoning / review: `lo/claude-opus-4.6`.
 
 Model diversity is useful but optional. A workflow must still run when only the parent model is available.
 

@@ -18,9 +18,10 @@ Load project configuration first and personal configuration second. Project valu
 ## Workflow
 
 1. Read the available model names and supported reasoning efforts from the current Codex tool schema or model selector. Do not invent slugs.
-2. Load existing project and personal configuration when present.
-3. Show the effective mapping. Ask for choices only when the user requested interactive selection or an existing slug is unavailable.
-4. Validate every explicit model and reasoning effort against the current host. Use `{ "inherit_parent": true }` when no override is needed.
+2. Router/custom prefix awareness: router models (such as `lo/*`, e.g. `lo/gemini-3.8-flash-high`, `lo/claude-opus-4.6`) and native models configured in the environment are supported as valid targets for sub-agents via `spawn_agent`.
+3. Load existing project and personal configuration when present.
+4. Show the effective mapping. Ask for choices only when the user requested interactive selection or an existing slug is unavailable.
+5. Validate every explicit model and reasoning effort against the current host or router definitions. Use `{ "inherit_parent": true }` when no override is needed.
 5. Write valid JSON atomically. Preserve unrelated keys so future pstack versions can add roles without losing user settings.
 6. Re-read the file, report the effective mapping, and tell the user that a new Codex task is the safest place to test updated skill behavior.
 

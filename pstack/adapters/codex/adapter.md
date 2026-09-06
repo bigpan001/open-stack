@@ -16,5 +16,4 @@ cp -r . ~/.codex/plugins/cache/open-stack-local/pstack/0.14.7+codex.1/
 ```
 
 ## Delegation & Swarm Execution
-Codex natively supports spawning sub-agents. Multi-agent skills invoke sub-agents with specific model tags and wait for completion.
-
+Codex natively supports spawning sub-agents via `spawn_agent`. Multi-agent skills invoke sub-agents with specific model tags (including routed aliases such as `lo/*`, e.g. `lo/gemini-3.8-flash-high`, `lo/claude-opus-4.6`) and wait for completion via `wait_agent`.
