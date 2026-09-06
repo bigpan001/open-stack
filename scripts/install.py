@@ -4,6 +4,8 @@
 Supported targets: codex, cursor, pi, opencode, kimi, zcode.
 """
 
+from __future__ import annotations
+
 import argparse
 import shutil
 import sys
@@ -16,7 +18,8 @@ ADAPTERS_SRC = ROOT / "pstack" / "adapters"
 TARGET_PATHS = {
     "codex": Path.home() / ".codex" / "plugins" / "cache" / "open-stack-local" / "pstack" / "0.14.7+codex.1",
     "cursor": Path.home() / ".cursor" / "skills",
-    "pi": Path.home() / ".pi" / "skills",
+    "pi": Path.home() / ".pi" / "agent" / "skills",
+    "agents": Path.home() / ".agents" / "skills",
     "opencode": Path.home() / ".opencode" / "skills",
     "kimi": Path.home() / ".kimi" / "skills",
     "zcode": Path.home() / ".zcode" / "skills",
@@ -69,13 +72,20 @@ def install(target: str, dest_override: str | None = None, dry_run: bool = False
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Install pstack across Agent runtimes.")
-    parser.add_argument("target", choices=["codex", "cursor", "pi", "opencode", "kimi", "zcode", "all"], help="Target agent platform")
+    parser.add_argument("target", choices=["codex", "cursor", "pi", "agents", "opencode", "kimi", "zcode", "all"], help="Target agent platform")
+    parser.add_argument("--project", action="store_true", help="Install to project-local directory (.agents/skills) instead of global user home")
     parser.add_argument("--dest", help="Custom destination path")
     parser.add_argument("--dry-run", action="store_true", help="Simulate installation without copying files")
     args = parser.parse_args()
 
-    if args.target == "all":
-        for t in ["codex", "cursor", "pi", "opencode", "kimi", "zcode"]:
+    if args.project:
+        dest_override = args.dest if args.dest else str(ROOT / ".agents" / "skills")
+        if args.target == "all":
+            install("agents", dest_override, args.dry_run)
+        else:
+            install(args.target, dest_override, args.dry_run)
+    elif args.target == "all":
+        for t in ["codex", "cursor", "pi", "agents", "opencode", "kimi", "zcode"]:
             install(t, args.dest, args.dry_run)
     else:
         install(args.target, args.dest, args.dry_run)

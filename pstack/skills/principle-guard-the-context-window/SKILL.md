@@ -3,7 +3,7 @@ name: principle-guard-the-context-window
 description: "Apply when context is filling up: large outputs, long files, repeated reads, fan-out planning. Route bulk to subagents; keep summaries in the main thread, not raw payloads."
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # Guard the Context Window
 

@@ -1,6 +1,6 @@
 ---
 name: poteto-mode
-description: poteto's engineering style for concise responses, deliberate Codex sub-agents, simple code, and verified work. Use for poteto, $poteto-mode, or requests to work in this style.
+description: poteto's engineering style for concise responses, deliberate sub-agents, simple code, and verified work. Use for poteto, $poteto-mode, or requests to work in this style.
 ---
 
 > Cross-agent runtime: read the [Universal runtime adapter](references/universal-runtime-adapter.md) or your platform adapter under `adapters/<platform>/` before using delegation, model routing, sub-agents, or platform-specific paths.
@@ -20,7 +20,7 @@ Remaining triggers:
 - Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
 - Contested design → the **interrogate** skill (multi-model adversarial) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
-- Any prose surface → the **unslop** skill. Your reply is a prose surface; write it per **Writing the reply**. Skill authoring follows Codex's `$skill-creator` skill when it is available.
+- Any prose surface → the **unslop** skill. Your reply is a prose surface; write it per **Writing the reply**. Skill authoring follows the `$skill-creator` skill when it is available.
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`$technical-writing`).
 - Before commit → use `deslop` when that optional external skill is available; otherwise apply `$unslop` to prose and review the diff directly.
 - Before review → the **no-comments** skill (`$no-comments`).
@@ -85,7 +85,7 @@ Read the leaf skill in full for any principle you apply. Each entry names when i
 
 **Use a brief that explicitly invokes `$poteto-agent` for a sub-agent spawned inside a playbook step** (code-writing delegates and ad-hoc helpers). `$poteto-mode` and `$poteto-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) define their own briefs; respect those briefs.
 
-**Defaults for every `spawn_agent` call.** Keep the brief bounded and self-contained, point to files instead of inlining large context, and use a role route from `$setup-pstack` only when the current host exposes it. Otherwise omit model and reasoning overrides to inherit the parent. Prefer a high-judgment route for cross-cutting design, concurrency, subtle algorithms, prose, and review; prefer a faster route for mechanical edits. The [Codex runtime adapter](references/codex-adapter.md) defines portable defaults.
+**Defaults for every `spawn_agent` call.** Keep the brief bounded and self-contained, point to files instead of inlining large context, and use a role route from `$setup-pstack` only when the current host exposes it. Otherwise omit model and reasoning overrides to inherit the parent. Prefer a high-judgment route for cross-cutting design, concurrency, subtle algorithms, prose, and review; prefer a faster route for mechanical edits. The [Universal runtime adapter](references/universal-runtime-adapter.md) defines portable defaults across runtimes.
 **Model override support:** `spawn_agent` explicitly supports routed aliases (e.g. `lo/*` prefixes like `lo/gemini-3.8-flash-high`, `lo/claude-opus-4.6`) defined in `pstack-models.json`. Always pass configured model aliases rather than falling back to parent model inheritance, avoiding unexpected primary model quota consumption.
 
 You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. Interrupt-chained resumes silently drop directives, so fire a fresh subagent with consolidated scope rather than trusting a "done" summary. A second opinion is the same prompt against a different model. Agreement is high-signal.
@@ -132,7 +132,7 @@ A large or cross-cutting effort (a migration across many call sites, an ambitiou
 - **Autopilot-full.** A queue of independent PRs run to merged with full autonomy: one owner per PR carries build through merge, and the root swarm-verifies each merge-ready head before its owner merges ("autopilot this queue", "full autopilot", one-owner-per-PR programs). `playbooks/autopilot-full.md`.
 - **Autopilot-stack.** A queue of changes built and verified with full autonomy, delivered as one linear reviewed base-branch stack the operator lands herself ("autopilot-stack", "stack them, don't ship", "build the stack, I'll land it"). `playbooks/autopilot-stack.md`.
 - **Session pickup.** Resuming or taking over a prior agent's in-flight work from a transcript, cloud-agent URL, or pushed branch. `playbooks/session-pickup.md`.
-- **Pause safely.** Suspending in-flight work cleanly so it can be resumed, on an explicit pause, going offline, a Codex restart, or imminent context compaction. The complement to Session pickup. Full steps: `playbooks/pause-safely.md`.
+- **Pause safely.** Suspending in-flight work cleanly so it can be resumed, on an explicit pause, going offline, an agent restart, or imminent context compaction. The complement to Session pickup. Full steps: `playbooks/pause-safely.md`.
 - **Multi-phase or multi-PR plan.** Work that spans phases or stacked PRs. `playbooks/multi-phase-plan.md`.
 - **Worktree and simulator cleanup.** Reclaiming local disk by pruning merged or abandoned git worktrees and stale iOS simulators ("what's using my disk", "clean up worktrees", "prune safe-to-prune worktrees", "free up space", "delete old simulators"). `playbooks/worktree-cleanup.md`.
 - **Opening a PR.** Invoked at the end of every other playbook. `playbooks/opening-a-pr.md`.

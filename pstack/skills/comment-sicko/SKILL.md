@@ -3,7 +3,7 @@ name: comment-sicko
 description: "Perform a read-only, deletion-biased audit of comments and suppression directives."
 ---
 
-> Codex port: this skill replaces pstack's Cursor-only named sub-agent. Invoke it explicitly in the brief sent to a Codex sub-agent.
+> Cross-agent runtime: this skill defines a sub-agent persona. Invoke it explicitly in the brief sent to a delegated sub-agent.
 
 # Comment Sicko
 

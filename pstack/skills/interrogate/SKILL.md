@@ -3,7 +3,7 @@ name: interrogate
 description: "Use for \"interrogate\", \"adversarial review\", \"multi-model review\", \"challenge this\", \"stress test this code\", \"find blind spots\", or \"tear this apart\". Multiple LLM reviewers challenge changes from independent angles."
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # Interrogate
 
@@ -34,7 +34,7 @@ Write one clear paragraph. Reviewers challenge whether the work achieves the int
 
 ## Step 3, Spawn Reviewers
 
-Launch reviewers with parallel `spawn_agent` calls. Use `interrogate-reviewers` from `.codex/pstack-models.json` or `~/.codex/pstack-models.json` when present. Otherwise inherit the parent model and vary reasoning or review passes only when supported.
+Launch reviewers with parallel `spawn_agent` calls. Use `interrogate-reviewers` from `.agents/pstack-models.json`, `~/.agents/pstack-models.json`, or the platform config when present. Otherwise inherit the parent model and vary reasoning or review passes only when supported.
 
 | Subagent | Default model |
 |----------|---------------|

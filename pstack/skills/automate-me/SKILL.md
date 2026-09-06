@@ -1,21 +1,21 @@
 ---
 name: automate-me
-description: "Use for \"automate me\", \"create/update/refresh my -mode skill\", or turning the user's recurring working preferences into a Codex skill. Drafts or revises a personal mode skill via $skill-creator and $unslop, optionally using in-scope task history."
+description: "Use for \"automate me\", \"create/update/refresh my -mode skill\", or turning the user's recurring working preferences into an agent skill. Drafts or revises a personal mode skill via $skill-creator and $unslop, optionally using in-scope task history."
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # Automate me
 
 A guided flow for turning the user's working conventions into a skill agents will follow. The output is one `-mode` skill tailored to them (e.g. `jay-mode`, `priya-mode`).
 
-This skill orchestrates an inline evidence pass, Codex's `$skill-creator`, and `$unslop`. It sequences them; it does not replace them.
+This skill orchestrates an inline evidence pass, the `$skill-creator`, and `$unslop`. It sequences them; it does not replace them.
 
 ## Flow
 
 ### 0. Check for an existing skill
 
-Look recursively for `.codex/skills/**/*-mode/SKILL.md` and `~/.codex/skills/*-mode/SKILL.md` matching the user's handle. If one exists and the user did not already say whether to update or replace it, ask one concise question before overwriting it:
+Look recursively for `.agents/skills/**/*-mode/SKILL.md` and `~/.agents/skills/*-mode/SKILL.md` matching the user's handle. If one exists and the user did not already say whether to update or replace it, ask one concise question before overwriting it:
 
 - Update the existing skill (default for repeat runs)
 - Start fresh (rare; ask why before doing it)
@@ -27,7 +27,7 @@ Update mode changes the rest of the flow:
 
 ### 1. Mine their history
 
-Use only task histories the user placed in scope and that Codex thread tools can access. Do not scan filesystem transcript directories or unrelated tasks. If no prior task history is available, mine the current conversation and ask the user for missing preferences.
+Use only task histories the user placed in scope and that runtime conversation history tools can access. Do not scan filesystem transcript directories or unrelated tasks. If no prior task history is available, mine the current conversation and ask the user for missing preferences.
 
 Survey in-scope task histories for recurring patterns. Use read-only parallel sub-agents only when several task histories are available. Each returns a short structured list of patterns with task and turn pointers. Default signals worth hunting:
 
@@ -65,13 +65,13 @@ The **poteto-mode** skill shows the shape. Read it for granularity. Don't copy i
 
 ### 4. Draft the skill
 
-Use Codex's `$skill-creator` skill to author the skill. Placement:
+Use the `$skill-creator` skill to author the skill. Placement:
 
-- Path: preserve an existing mode skill's category. For a new mode, use `.codex/skills/<handle>/<handle>-mode/SKILL.md` when the repo has an established personal category for that handle; otherwise default to `.codex/skills/<handle>-mode/SKILL.md` in the project (or `~/.codex/skills/<handle>-mode/` if the user prefers a personal skill).
+- Path: preserve an existing mode skill's category. For a new mode, use `.agents/skills/<handle>/<handle>-mode/SKILL.md` when the repo has an established personal category for that handle; otherwise default to `.agents/skills/<handle>-mode/SKILL.md` in the project (or `~/.agents/skills/<handle>-mode/` if the user prefers a personal skill).
 - Handle: the user's first name or chosen identifier.
 - Frontmatter `description`: trigger on their name, `$<handle>-mode`, and "work in their style", not on generic keywords like "write code" or "review PR".
 - Frontmatter formatting: follow `$skill-creator`'s YAML rules. Keep `description` as one YAML scalar; quote it or use `description: >-` with indented continuation lines when punctuation or wrapping requires it.
-- Create `agents/openai.yaml` with `policy.allow_implicit_invocation: false` by default. Mode skills are heavy and opinionated, so Codex should load them only when explicitly invoked. Enable implicit invocation only when the user explicitly asks for it.
+- Create `agents/openai.yaml` with `policy.allow_implicit_invocation: false` by default when authoring for OpenAI-compatible agents. Mode skills are heavy and opinionated, so the runtime should load them only when explicitly invoked. Enable implicit invocation only when the user explicitly asks for it.
 
 ### 5. Iterate on prose
 
@@ -107,4 +107,4 @@ Run a description-optimization loop only if the skill's trigger accuracy turns o
 
 - The **poteto-mode** skill: example of the output shape.
 - The **unslop** skill: prose discipline for every line.
-- Codex's `$skill-creator` skill: skill authoring process and writing guidelines.
+- the `$skill-creator` skill: skill authoring process and writing guidelines.

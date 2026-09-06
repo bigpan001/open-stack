@@ -4,7 +4,7 @@
 
 A pickup is inheritance. The prior agent already paid the cost of reading the code, running the repros, making the design choices. Redoing loses the bias check and burns context. Resist the urge to re-derive; read.
 
-1. Locate the prior trail through an in-scope Codex task, a user-supplied shared link, or a pushed branch. Use Codex thread tools when available; do not scan filesystem transcripts or unrelated tasks. Read the overview and latest turns first, then scan back for decision points. Reduce long history in a read-only sub-agent when delegation is authorized.
+1. Locate the prior trail through an in-scope agent session, a user-supplied shared link, or a pushed branch. Use conversation history tools when available; do not scan filesystem transcripts or unrelated tasks. Read the overview and latest turns first, then scan back for decision points. Reduce long history in a read-only sub-agent when delegation is authorized.
 2. Reconstruct operational state. The branch and worktree, what already landed (`git log`, `git diff` against the base), the open todos, the decisions made. The prior trail is authoritative input. Resist the bias to re-derive it.
 3. Diff done vs pending. Compare what shipped against what was planned, name the resume point, do not re-run the prior repro or redo completed work. A "let me verify from scratch" pass is the tell that you're treating the trail as untrustworthy when it's actually authoritative.
 4. Route the remaining work to the matching playbook and pick the verdict: continue the execution, ship a finished recommendation, ratify or override a prior conclusion, or postmortem a failed run. The pickup playbook ends here; the routed playbook owns the rest.

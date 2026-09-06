@@ -3,7 +3,7 @@
 **You own the exit condition. Define done, then drive to it without stopping.** For "going to bed", "run until done", or "monitor until X".
 
 1. State the exit condition as a checkable predicate before the first iteration (tests green, repro fixed, all N PRs merged, pixel-diff zero). A vague goal stalls; a predicate lets you stop.
-2. Pick the wake mechanism. Wait on active sub-agents with `wait_agent`. When the user explicitly asks for recurring monitoring or a future follow-up, create a Codex heartbeat automation that stays quiet until a meaningful change, completion, failure, or required action.
+2. Pick the wake mechanism. Wait on active sub-agents with `wait_agent`. When the user explicitly asks for recurring monitoring or a future follow-up, create a background loop or heartbeat automation that stays quiet until a meaningful change, completion, failure, or required action.
 3. Each iteration makes the smallest change the evidence justifies, verifies it against the predicate, commits if it advanced, discards changes that didn't help. Belt-and-suspenders that "might help" gets reverted, not left to ride.
    Sequence the work via the **sequence-verifiable-units** principle skill, verifying each unit before the next instead of batching checks at the end.
 4. Handle safe, in-scope discoveries without unnecessary pauses. Do not expand into unrelated bugs, external writes, or extra PRs without authorization. Surface consequential actions, genuine product decisions, and real dead ends. Keep the predicate as the main drive.

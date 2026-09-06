@@ -14,9 +14,9 @@ Open a todolist with the steps below copied in verbatim. A step you skip stays l
 
 #### Roles and placement
 
-- **Coordinator (this chat).** Local. Frames, authors briefs, drains the inbox, owns the human report, makes judgment calls. It never authors or edits code: conflicted merges, restacks, and code changes are always tasks. Mechanically landing a verified unit (fast-forward or clean cherry-pick of a worker's commit, then push) is bookkeeping the coordinator may do itself on repos where local git is cheap; queueing finished work behind an idle stacker is how a deadline harvests nothing. The loop is agentic end to end. Agents are spawned, resumed, and drained only through Codex collaboration tools. State reads and writes go through `scripts/orch/orch.ts` at drain points, one command in and one line out, to conserve context. The CLI never spawns, waits, or wakes anything.
-- **Sub-coordinator.** Use one per track only when the program exceeds what one coordinator can drain. Nested Codex sub-agents may have a smaller tool surface than the root, so each brief must be self-contained and must not assume an `environment` selector. Roll up aggregates at wave boundaries; never forward raw child reports. Cap in-flight children at the current host's concurrency limit.
-- **Worker / verifier.** Codex sub-agents share the local workspace. Use available browser, native-computer, terminal, or simulator tools for runtime verification. Give each concurrent writer its own worktree or branch. Prefer fewer, broader workers. Run a unit's verifier on a different available model route when possible.
+- **Coordinator (this chat).** Local. Frames, authors briefs, drains the inbox, owns the human report, makes judgment calls. It never authors or edits code: conflicted merges, restacks, and code changes are always tasks. Mechanically landing a verified unit (fast-forward or clean cherry-pick of a worker's commit, then push) is bookkeeping the coordinator may do itself on repos where local git is cheap; queueing finished work behind an idle stacker is how a deadline harvests nothing. The loop is agentic end to end. Agents are spawned, resumed, and drained only through runtime delegation tools. State reads and writes go through `scripts/orch/orch.ts` at drain points, one command in and one line out, to conserve context. The CLI never spawns, waits, or wakes anything.
+- **Sub-coordinator.** Use one per track only when the program exceeds what one coordinator can drain. Nested sub-agents may have a smaller tool surface than the root, so each brief must be self-contained and must not assume an `environment` selector. Roll up aggregates at wave boundaries; never forward raw child reports. Cap in-flight children at the current host's concurrency limit.
+- **Worker / verifier.** sub-agents share the local workspace. Use available browser, native-computer, terminal, or simulator tools for runtime verification. Give each concurrent writer its own worktree or branch. Prefer fewer, broader workers. Run a unit's verifier on a different available model route when possible.
 
 Depth stays at coordinator, track, worker. Author the track decomposition per project (build, landing, and verification are common cuts, not a required shape); hard-coded swarm trees were tried and parked as too rigid.
 
@@ -94,13 +94,13 @@ A unit is not done until its output is externalized the moment it lands, never b
 
 #### Liveness and failure
 
-- Never resume an agent to check on it; a resume restarts an idle agent. Probe read-only: the ledger, `units.tsv`, `gh`, pushed branches, the Codex sub-agent's status in the Cursor dashboard. Transcript mtime is not liveness.
+- Never resume an agent to check on it; a resume restarts an idle agent. Probe read-only: the ledger, `units.tsv`, `gh`, pushed branches, the sub-agent's status in the Cursor dashboard. Transcript mtime is not liveness.
 - A silent death gets a synthetic postmortem row in the inbox (unit, failure mode, last evidence, options). Replan on evidence as it arrives; never wait for full quiescence.
 - Retry by mode: cap-hit or oom, respawn with smaller scope; network-drop, retry as-is; tool-error, retry on a different model; unknown, retry once. Two retries, then abandon the unit and replan around it.
 - A zombie that returns hours late reconciles against the current frontier and ledger before anything is accepted; the world moved while it slept. Salvage unique findings through a fresh unit, never a blind merge.
 - When continued spawning would produce garbage tree-wide (bad upstream output, broken acceptance, dead infra), write a stop line at the top of the standing orders, let in-flight work finish, fix the cause, clear it.
 - Bound your own infra retries the same way you bound a child's. After a few consecutive tool aborts, stop retrying: write a terminal handoff to durable state (what is done, where it lives, the exact command to resume) and end the run. Hours of retry loops against a dead executor produce nothing a handoff would not.
-- After a Codex restart, assume local sub-agents no longer run. Re-read the standing orders and `units.tsv`, recompute the frontier from repository and PR state, and respawn only the work that is still needed. Reattach by durable artifacts such as PR and branch, not an old agent id.
+- After an agent restart, assume local sub-agents no longer run. Re-read the standing orders and `units.tsv`, recompute the frontier from repository and PR state, and respawn only the work that is still needed. Reattach by durable artifacts such as PR and branch, not an old agent id.
 
 #### Escalation
 

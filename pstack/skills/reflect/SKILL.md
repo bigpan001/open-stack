@@ -1,9 +1,9 @@
 ---
 name: reflect
-description: Spawn three parallel Codex reviewers over the current task history, surface durable learnings, and propose concrete skill edits. Use when the user explicitly says reflect or invokes $reflect.
+description: Spawn three parallel reviewers over the current task history, surface durable learnings, and propose concrete skill edits. Use when the user explicitly says reflect or invokes $reflect.
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # Reflect
 
@@ -23,7 +23,7 @@ Skip when the conversation is trivial, off-topic, or already covered by an exist
 
 ### 1. Capture the current task history
 
-Use the current visible conversation and Codex thread tools when available. Do not scan filesystem transcript directories or unrelated tasks. If the complete history is not accessible, write a tight digest containing the user's goal, decisions, evidence, failed paths, corrections, and final artifacts.
+Use the current visible conversation and runtime conversation history tools when available. Do not scan filesystem transcript directories or unrelated tasks. If the complete history is not accessible, write a tight digest containing the user's goal, decisions, evidence, failed paths, corrections, and final artifacts.
 
 ### 2. Spawn three reviewers in parallel
 
@@ -54,7 +54,7 @@ Do not file Backlog items or mutate an external tracker unless the user explicit
 For each approved Accepted item, follow the Routing field exactly:
 
 - Trivial existing-skill edit (a one-line bullet, a tightened sentence, a stale fact corrected): parent does directly.
-- Substantive existing-skill edit (a new section, a new pattern table, more than ~10 lines): hand to Codex's `$skill-creator` skill and run its draft / test / iterate loop.
+- Substantive existing-skill edit (a new section, a new pattern table, more than ~10 lines): hand to the `$skill-creator` skill and run its draft / test / iterate loop.
 - `tune description: <skill path>` (the skill exists but didn't trigger when it should have): hand to `$skill-creator` and run its description-optimization loop.
 - `new skill via create-skill: <kebab-name>`: hand creation to `$skill-creator`. Do not invent the shape ad hoc.
 

@@ -7,23 +7,23 @@ description: Configure the runtime models, platform adapters, and reasoning effo
 
 Read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) and platform adapters under `adapters/<platform>/` before changing model or adapter configuration.
 
-Configure only models that the current Codex host exposes. A missing configuration is valid; all pstack workflows can inherit the parent model.
+Configure only models that the current agent host exposes. A missing configuration is valid; all pstack workflows can inherit the parent model.
 
 ## Configuration location
 
-Use `<workspace>/.codex/pstack-models.json` by default so the repository can carry its own routing choices. Write `~/.codex/pstack-models.json` only when the user explicitly asks for a personal configuration that applies across projects.
+Use `<workspace>/.agents/pstack-models.json` by default so the repository can carry its own routing choices. Write `~/.agents/pstack-models.json` only when the user explicitly asks for a personal configuration that applies across projects.
 
 Load project configuration first and personal configuration second. Project values override matching personal values.
 
 ## Workflow
 
-1. Read the available model names and supported reasoning efforts from the current Codex tool schema or model selector. Do not invent slugs.
+1. Read the available model names and supported reasoning efforts from the current agent tool schema or model selector. Do not invent slugs.
 2. Router/custom prefix awareness: router models (such as `lo/*`, e.g. `lo/gemini-3.8-flash-high`, `lo/claude-opus-4.6`) and native models configured in the environment are supported as valid targets for sub-agents via `spawn_agent`.
 3. Load existing project and personal configuration when present.
 4. Show the effective mapping. Ask for choices only when the user requested interactive selection or an existing slug is unavailable.
 5. Validate every explicit model and reasoning effort against the current host or router definitions. Use `{ "inherit_parent": true }` when no override is needed.
 5. Write valid JSON atomically. Preserve unrelated keys so future pstack versions can add roles without losing user settings.
-6. Re-read the file, report the effective mapping, and tell the user that a new Codex task is the safest place to test updated skill behavior.
+6. Re-read the file, report the effective mapping, and tell the user that a new agent task/session is the safest place to test updated skill behavior.
 
 ## Schema
 

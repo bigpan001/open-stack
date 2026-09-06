@@ -3,7 +3,7 @@ name: show-me-your-work
 description: "Keep a reviewable decision trail for long-running or unattended work: a TSV log with one row per decision (what, why, evidence, result). Local by default; commit it when a reviewer needs the trail to trust the result. Use for /show-me-your-work, autonomous or multi-phase runs, or work a human reviews after stepping away."
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
 # Show me your work
 
@@ -54,7 +54,7 @@ Commit it only when the work is ambitious enough that a reviewer needs the trail
 
 ## Audit the log against the task history
 
-At the end of the run, check that the log told the truth against the current visible task history and actual artifacts. Use Codex thread tools when available. Do not scan filesystem transcript directories or unrelated tasks.
+At the end of the run, check that the log told the truth against the current visible task history and actual artifacts. Use runtime conversation history tools when available. Do not scan filesystem transcript directories or unrelated tasks.
 
 - Every row maps to a real action. Cut invented or aspirational entries.
 - Each row's evidence resolves and shows what the row claims.

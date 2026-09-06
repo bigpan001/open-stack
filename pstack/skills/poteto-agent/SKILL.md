@@ -1,11 +1,11 @@
 ---
 name: poteto-agent
-description: "Apply the full pstack engineering style inside an explicitly delegated Codex subtask."
+description: "Apply the full pstack engineering style inside an explicitly delegated sub-agent task."
 ---
 
-> Codex port: read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before using delegation, model routing, monitoring, transcripts, or product-specific paths.
+> Cross-agent runtime: read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under  before using delegation, model routing, sub-agents, or platform-specific paths.
 
-> Codex port: this skill replaces pstack's Cursor-only named sub-agent. Invoke it explicitly in the brief sent to a Codex sub-agent.
+> Cross-agent runtime: this skill defines a sub-agent persona. Invoke it explicitly in the brief sent to a delegated sub-agent.
 
 # Poteto subagent
 

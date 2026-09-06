@@ -2,6 +2,10 @@
 **/node_modules/
 *.log
 .codex/pstack-models.json
+.agents/pstack-models.json
+.agents/skills/
+.codex/
+
 .audit/
 decisions.tsv
 /plugins/pstack/

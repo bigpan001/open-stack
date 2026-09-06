@@ -5,7 +5,7 @@ description: "Spawn Comment Sicko, fix accepted findings, and offer encodings fo
 
 # No comments
 
-Read the [Codex runtime adapter](../poteto-mode/references/codex-adapter.md) before delegating the audit.
+Read the [Universal runtime adapter](../poteto-mode/references/universal-runtime-adapter.md) or your platform adapter under `adapters/<platform>/` before delegating the audit.
 
 Spawn Comment Sicko. Act on accepted findings.
 
